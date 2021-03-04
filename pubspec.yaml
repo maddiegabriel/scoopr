@@ -1,5 +1,5 @@
 name: scoopr
-description: A mobile application that allows users to find nearby ice cream trucks.
+description: A new Flutter application.
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `pub publish`. This is preferred for private packages.
@@ -27,10 +27,16 @@ dependencies:
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^1.0.0
+  cupertino_icons: ^1.0.1
+
+  # firebase
+  firebase_core: "^0.7.0"
+  firebase_auth: "^0.20.1"
 
 dev_dependencies:
   flutter_test:
+    sdk: flutter
+  integration_test:
     sdk: flutter
 
 # For information on the generic Dart part of this file, see the
