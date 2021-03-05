@@ -9,8 +9,18 @@ class SignInPage extends StatelessWidget{
   @override
   Widget build(BuildContext context){
     return Scaffold(
-        body: Column(
-            children: [
+        appBar: AppBar(
+          title: Text(''),
+          backgroundColor: Colors.blue,
+        ),
+        body: Center(
+          child: Column(
+            children: <Widget>[
+              new Image(
+                image: new AssetImage('assets/images/logo.jpg'),
+                height: 150.0,
+                width: 300.0,
+              ),
               TextField(
                 controller: emailController,
                 decoration: InputDecoration(
@@ -33,6 +43,7 @@ class SignInPage extends StatelessWidget{
               child: Text("Sign In")
               )
             ]
+          )
         )
     );
   }
