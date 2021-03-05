@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "437174381874",
-    "project_id": "scoopr-4b342",
-    "storage_bucket": "scoopr-4b342.appspot.com"
+    "project_number": "19638138825",
+    "project_id": "scoopr-9ccc3",
+    "storage_bucket": "scoopr-9ccc3.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:437174381874:android:1569c1476519ee0cee3b2b",
+        "mobilesdk_app_id": "1:19638138825:android:c8484e61a698a369eb5a18",
         "android_client_info": {
           "package_name": "com.groupscoop.scoopr"
         }
       },
       "oauth_client": [
         {
-          "client_id": "437174381874-vr38uuq8q1m1crhovdv3gldcc96i75p6.apps.googleusercontent.com",
+          "client_id": "19638138825-5ogcuo711ea6arm2eukn9fi8bgamvd8a.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAsKIZ2iTb3RTCd6veyvj2TE0N66ayvKq4"
+          "current_key": "AIzaSyCILNFb1ccVbAo2222O0r8DDydZvLpluwA"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "437174381874-vr38uuq8q1m1crhovdv3gldcc96i75p6.apps.googleusercontent.com",
+              "client_id": "19638138825-5ogcuo711ea6arm2eukn9fi8bgamvd8a.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
