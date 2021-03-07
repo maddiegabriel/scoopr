@@ -15,6 +15,7 @@ class SignInPage extends StatelessWidget{
           title: Text(''),
           backgroundColor: Colors.blue,
         ),
+        resizeToAvoidBottomInset: true,
         body: Center(
           child: Column(
             children: <Widget>[
