@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:scoopr/authentication_service.dart';
+import 'package:scoopr/SignIn.dart';
+import 'package:scoopr/authenticationService.dart';
 import 'package:provider/provider.dart';
+import 'package:scoopr/signUp.dart';
 
 class SignInPage extends StatelessWidget{
   final TextEditingController emailController = TextEditingController();
@@ -40,7 +42,16 @@ class SignInPage extends StatelessWidget{
                       password: passwordController.text.trim()
                     );
               },
-              child: Text("Sign In")
+              child: Text("Sign In"),
+              ),
+              ElevatedButton(
+                  onPressed: (){
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => SignUpPage()),
+                    );
+                  },
+                  child: Text("Sign Up")
               )
             ]
           )

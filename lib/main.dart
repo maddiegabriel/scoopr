@@ -2,8 +2,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:scoopr/SignIn.dart';
-import 'package:scoopr/authentication_service.dart';
+import 'package:scoopr/signIn.dart';
+import 'package:scoopr/authenticationService.dart';
 import 'package:scoopr/home.dart';
 
 Future<void> main() async {

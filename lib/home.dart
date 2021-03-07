@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:scoopr/authentication_service.dart';
+import 'package:scoopr/authenticationService.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatelessWidget{
