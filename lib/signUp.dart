@@ -15,48 +15,51 @@ class SignUpPage extends StatelessWidget{
           title: Text(''),
           backgroundColor: Colors.blue,
         ),
-        body: Center(
-            child: Column(
-                children: <Widget>[
-                  new Image(
-                    image: new AssetImage('assets/images/logo.jpg'),
-                    height: 150.0,
-                    width: 300.0,
-                  ),
-                  TextField(
-                    controller: nameController,
-                    decoration: InputDecoration(
-                        labelText: "Name"
+        // Moves text field above keyboard
+        body: SingleChildScrollView(
+            child: Center(
+              child: Column(
+                  children: <Widget>[
+                    new Image(
+                      image: new AssetImage('assets/images/logo.png'),
+                      height: 150.0,
+                      width: 300.0,
                     ),
-                  ),
-                  TextField(
-                    controller: emailController,
-                    decoration: InputDecoration(
-                        labelText: "Email"
+                    TextField(
+                      controller: nameController,
+                      decoration: InputDecoration(
+                          labelText: "Name"
+                      ),
                     ),
-                  ),
-                  TextField(
-                    controller: passwordController,
-                    decoration: InputDecoration(
-                        labelText: "Password"
+                    TextField(
+                      controller: emailController,
+                      decoration: InputDecoration(
+                          labelText: "Email"
+                      ),
                     ),
-                  ),
-                  ElevatedButton(
-                      onPressed: () {
-                          context.read<AuthenticationService>().signUp(
-                              email: emailController.text.trim(),
-                              password: passwordController.text.trim(),
-                              name: nameController.text.trim()
+                    TextField(
+                      controller: passwordController,
+                      decoration: InputDecoration(
+                          labelText: "Password"
+                      ),
+                    ),
+                    ElevatedButton(
+                        onPressed: () {
+                            context.read<AuthenticationService>().signUp(
+                                email: emailController.text.trim(),
+                                password: passwordController.text.trim(),
+                                name: nameController.text.trim()
+                            );
+                          Navigator.pop(
+                            context,
+                            MaterialPageRoute(builder: (context) => SignUpPage()),
                           );
-                        Navigator.pop(
-                          context,
-                          MaterialPageRoute(builder: (context) => SignUpPage()),
-                        );
-                      },
-                      child: Text("Sign Up")
-                  )
-                ]
-            )
+                        },
+                        child: Text("Sign Up")
+                    )
+                  ]
+              )
+          )
         )
     );
   }
