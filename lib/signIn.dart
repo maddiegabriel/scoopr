@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:scoopr/SignIn.dart';
 import 'package:scoopr/authenticationService.dart';
 import 'package:provider/provider.dart';
-import 'package:scoopr/signUp.dart';
+import 'package:scoopr/registerAs.dart';
 
 class SignInPage extends StatelessWidget{
   final TextEditingController emailController = TextEditingController();
@@ -13,7 +12,7 @@ class SignInPage extends StatelessWidget{
     return Scaffold(
         appBar: AppBar(
           title: Text(''),
-          backgroundColor: Colors.blue,
+          backgroundColor: Colors.indigoAccent,
         ),
         // Moves text field above keyboard
         body: SingleChildScrollView(
@@ -38,22 +37,28 @@ class SignInPage extends StatelessWidget{
                   ),
                 ),
                 ElevatedButton(
-                    onPressed: (){
-                      context.read<AuthenticationService>().signIn(
-                        email: emailController.text.trim(),
-                        password: passwordController.text.trim()
-                      );
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.indigoAccent,
+                  ),
+                  onPressed: (){
+                    context.read<AuthenticationService>().signIn(
+                      email: emailController.text.trim(),
+                      password: passwordController.text.trim()
+                    );
                 },
                 child: Text("Sign In"),
                 ),
                 ElevatedButton(
-                    onPressed: (){
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => SignUpPage()),
-                      );
-                    },
-                    child: Text("Sign Up")
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.indigoAccent,
+                  ),
+                  onPressed: (){
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => RegisterAsPage()),
+                    );
+                  },
+                  child: Text("Sign Up")
                 )
               ]
             )

@@ -1,7 +1,7 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:scoopr/authenticationService.dart';
 import 'package:provider/provider.dart';
+import 'package:scoopr/registerAs.dart';
 
 class SignUpPage extends StatelessWidget{
   final TextEditingController nameController = TextEditingController();
@@ -13,7 +13,7 @@ class SignUpPage extends StatelessWidget{
     return Scaffold(
         appBar: AppBar(
           title: Text(''),
-          backgroundColor: Colors.blue,
+          backgroundColor: Colors.indigoAccent,
         ),
         // Moves text field above keyboard
         body: SingleChildScrollView(
@@ -44,6 +44,9 @@ class SignUpPage extends StatelessWidget{
                       ),
                     ),
                     ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors.indigoAccent,
+                        ),
                         onPressed: () {
                             context.read<AuthenticationService>().signUp(
                                 email: emailController.text.trim(),
@@ -53,6 +56,10 @@ class SignUpPage extends StatelessWidget{
                           Navigator.pop(
                             context,
                             MaterialPageRoute(builder: (context) => SignUpPage()),
+                          );
+                          Navigator.pop(
+                            context,
+                            MaterialPageRoute(builder: (context) => RegisterAsPage()),
                           );
                         },
                         child: Text("Sign Up")
