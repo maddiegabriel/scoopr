@@ -24,7 +24,7 @@ class VendorSignUpPage extends StatelessWidget{
                     children: <Widget>[
                       new Image(
                         image: new AssetImage('assets/images/logo.png'),
-                        height: 150.0,
+                        height: 120.0,
                         width: 300.0,
                       ),
                       TextField(
