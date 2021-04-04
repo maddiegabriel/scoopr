@@ -9,6 +9,7 @@ class SignUpPage extends StatelessWidget{
   final TextEditingController nameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  final TextEditingController confirmPasswordController = TextEditingController();
 
   @override
   Widget build(BuildContext context){
@@ -66,6 +67,7 @@ class SignUpPage extends StatelessWidget{
                     Padding(
                       padding: const EdgeInsets.only(left: 20.0, top: 0, right: 20.0, bottom: 30.0),
                       child: TextField(
+                        controller: confirmPasswordController,
                         obscureText: true,
                         enableSuggestions: false,
                         autocorrect: false,
@@ -87,45 +89,60 @@ class SignUpPage extends StatelessWidget{
                                   ),
                                 ),
                                 onPressed: () {
-                                  final status = context.read<AuthenticationService>().signUp(
-                                      email: emailController.text.trim(),
-                                      password: passwordController.text.trim(),
-                                      name: nameController.text.trim()
-                                  );
-                                  status.then((stat) {
-                                    print("WELCOME TO THE FUTURE!!!!");
-                                    print(stat);
-                                    if (stat == "SUCCESS") {
-                                      // Navigate to success screen
-                                      print("CUSTOMER SIGN UP SUCCESS");
-                                      Navigator.pop(
-                                        context,
-                                        MaterialPageRoute(builder: (context) => SignUpPage()),
-                                      );
-                                      Navigator.pop(
-                                        context,
-                                        MaterialPageRoute(builder: (context) => RegisterAsPage()),
-                                      );
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(builder: (context) => HomePage()),
-                                      );
-                                    } else {
-                                      print('CUSTOMER SIGN UP FAILURE');
-                                      showDialog(
-                                          context: context,
-                                          builder: (context) {
-                                            return AlertDialog(
-                                              title: Text(
-                                                'scOOPS! Your sign up failed.',
-                                                style: TextStyle(color: Colors.black),
-                                              ),
-                                              content: Text(stat),
-                                            );
-                                          }
-                                      );
-                                    }
-                                  });
+                                  if(passwordController.text != confirmPasswordController.text) {
+                                    showDialog(
+                                        context: context,
+                                        builder: (context) {
+                                          return AlertDialog(
+                                            title: Text(
+                                              'scOOPS! Your sign up failed.',
+                                              style: TextStyle(color: Colors.black),
+                                            ),
+                                            content: Text('Your passwords don\'t match - please try again!'),
+                                          );
+                                        }
+                                    );
+                                  } else {
+                                    final status = context.read<AuthenticationService>().signUp(
+                                        email: emailController.text.trim(),
+                                        password: passwordController.text.trim(),
+                                        name: nameController.text.trim(),
+                                        type: 'CUSTOMER'
+                                    );
+                                    status.then((stat) {
+                                      print(stat);
+                                      if (stat.contains("SUCCESS")) {
+                                        // Navigate to success screen
+                                        print("CUSTOMER SIGN UP SUCCESS");
+                                        Navigator.pop(
+                                          context,
+                                          MaterialPageRoute(builder: (context) => SignUpPage()),
+                                        );
+                                        Navigator.pop(
+                                          context,
+                                          MaterialPageRoute(builder: (context) => RegisterAsPage()),
+                                        );
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(builder: (context) => HomePage()),
+                                        );
+                                      } else {
+                                        print('CUSTOMER SIGN UP FAILURE');
+                                        showDialog(
+                                            context: context,
+                                            builder: (context) {
+                                              return AlertDialog(
+                                                title: Text(
+                                                  'scOOPS! Your sign up failed.',
+                                                  style: TextStyle(color: Colors.black),
+                                                ),
+                                                content: Text(stat),
+                                              );
+                                            }
+                                        );
+                                      }
+                                    });
+                                  }
                                 },
                                 child: Text("SIGN UP")
                             )

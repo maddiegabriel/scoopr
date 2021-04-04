@@ -5,6 +5,8 @@ import 'package:provider/provider.dart';
 import 'package:scoopr/signIn.dart';
 import 'package:scoopr/authenticationService.dart';
 import 'package:scoopr/home.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:scoopr/vendorHome.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -46,8 +48,24 @@ class AuthenticationWrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final firebaseUser = context.watch<User>();
-    if(firebaseUser != null){
-      return HomePage();
+    print('@ home, auth user is...');
+    print(firebaseUser);
+
+    if(firebaseUser != null) {
+      CollectionReference users = FirebaseFirestore.instance.collection('Users');
+      String uid = FirebaseAuth.instance.currentUser.uid.toString();
+
+      users.doc(uid).get().then((user) {
+        if(user.data() != null) {
+          print('@ home, document user is...');
+          print(user.data()['type']);
+          if (user.data()['type'] == "VENDOR") {
+            return HomePage();
+          } else {
+            return HomePage();
+          }
+        }
+      });
     }
     return SignInPage();
   }

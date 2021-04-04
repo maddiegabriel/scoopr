@@ -3,17 +3,18 @@ import 'package:flutter/material.dart';
 import 'package:scoopr/authenticationService.dart';
 import 'package:provider/provider.dart';
 import 'package:scoopr/signIn.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
-class HomePage extends StatelessWidget{
+class VendorHomePage extends StatelessWidget{
   // Think this needs to do in an async func because it does not load name dynamically
   // first time after signing up
   getDisplayName() {
     User currUser = FirebaseAuth.instance.currentUser;
     print('inside getDisplayName');
     if(currUser.displayName != null) {
-      return "CUSTOMER HOME Welcome " + currUser.displayName;
+      return "VENDOR HOME Welcome " + currUser.displayName;
     } else {
-      return "CUSTOMER HOME Welcome!!!";
+      return "VENDOR HOME Welcome!!";
     }
   }
 
@@ -21,6 +22,7 @@ class HomePage extends StatelessWidget{
   Widget build(BuildContext context){
     return Scaffold(
       appBar: AppBar(
+        title: const Text('VENDOR HOME'),
         backgroundColor: Colors.white,
       ),
       body: Center(

@@ -3,7 +3,7 @@ import 'package:scoopr/authenticationService.dart';
 import 'package:provider/provider.dart';
 import 'package:scoopr/registerAs.dart';
 import 'package:scoopr/SignIn.dart';
-import 'package:scoopr/home.dart';
+import 'package:scoopr/vendorHome.dart';
 
 class VendorSignUpPage extends StatelessWidget{
   final TextEditingController nameController = TextEditingController();
@@ -11,6 +11,7 @@ class VendorSignUpPage extends StatelessWidget{
   final TextEditingController licenseController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  final TextEditingController confirmPasswordController = TextEditingController();
 
   @override
   Widget build(BuildContext context){
@@ -86,6 +87,7 @@ class VendorSignUpPage extends StatelessWidget{
                       Padding(
                         padding: const EdgeInsets.only(left: 20.0, top: 0, right: 20.0, bottom: 30.0),
                         child: TextField(
+                          controller: confirmPasswordController,
                           obscureText: true,
                           enableSuggestions: false,
                           autocorrect: false,
@@ -107,47 +109,71 @@ class VendorSignUpPage extends StatelessWidget{
                                   ),
                                 ),
                                 onPressed: () {
-                                  final status = context.read<AuthenticationService>().vendorSignUp(
-                                      email: emailController.text.trim(),
-                                      password: passwordController.text.trim(),
-                                      name: nameController.text.trim(),
-                                      business: businessController.text.trim(),
-                                      license: licenseController.text.trim()
-                                  );
-                                  status.then((stat) {
-                                    print("WELCOME TO THE FUTURE!!!!");
-                                    print(stat);
-                                    if (stat == "SUCCESS") {
-                                      // Navigate to success screen
-                                      print("CUSTOMER SIGN UP SUCCESS");
-                                      Navigator.pop(
-                                        context,
-                                        MaterialPageRoute(builder: (context) => VendorSignUpPage()),
-                                      );
-                                      Navigator.pop(
-                                        context,
-                                        MaterialPageRoute(builder: (context) => RegisterAsPage()),
-                                      );
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(builder: (context) => HomePage()),
-                                      );
-                                    } else {
-                                      print('CUSTOMER SIGN UP FAILURE');
-                                      showDialog(
-                                          context: context,
-                                          builder: (context) {
-                                            return AlertDialog(
-                                              title: Text(
-                                                'scOOPS! Your sign up failed.',
-                                                style: TextStyle(color: Colors.black),
-                                              ),
-                                              content: Text(stat),
-                                            );
-                                          }
-                                      );
-                                    }
-                                  });
+                                  if(passwordController.text != confirmPasswordController.text) {
+                                    showDialog(
+                                      context: context,
+                                      builder: (context) {
+                                        return AlertDialog(
+                                          title: Text(
+                                            'scOOPS! Your sign up failed.',
+                                            style: TextStyle(color: Colors.black),
+                                          ),
+                                          content: Text('Your passwords don\'t match - please try again!'),
+                                        );
+                                      }
+                                    );
+                                  } else {
+                                    final status = context.read<
+                                        AuthenticationService>().vendorSignUp(
+                                        email: emailController.text.trim(),
+                                        password: passwordController.text
+                                            .trim(),
+                                        name: nameController.text.trim(),
+                                        business: businessController.text
+                                            .trim(),
+                                        license: licenseController.text.trim(),
+                                        type: 'VENDOR'
+                                    );
+                                    status.then((stat) {
+                                      if (stat.contains("SUCCESS")) {
+                                        // Navigate to success screen
+                                        print("CUSTOMER SIGN UP SUCCESS");
+                                        Navigator.pop(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  VendorSignUpPage()),
+                                        );
+                                        Navigator.pop(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  RegisterAsPage()),
+                                        );
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  VendorHomePage()),
+                                        );
+                                      } else {
+                                        print('CUSTOMER SIGN UP FAILURE');
+                                        showDialog(
+                                            context: context,
+                                            builder: (context) {
+                                              return AlertDialog(
+                                                title: Text(
+                                                  'scOOPS! Your sign up failed.',
+                                                  style: TextStyle(
+                                                      color: Colors.black),
+                                                ),
+                                                content: Text(stat),
+                                              );
+                                            }
+                                        );
+                                      }
+                                    });
+                                  }
                                 },
                                 child: Text("SIGN UP")
                             )
