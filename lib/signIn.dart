@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:scoopr/authenticationService.dart';
 import 'package:provider/provider.dart';
 import 'package:scoopr/registerAs.dart';
+import 'package:scoopr/authExceptionHandler.dart';
 
 class SignInPage extends StatelessWidget{
   final TextEditingController emailController = TextEditingController();
@@ -33,8 +34,7 @@ class SignInPage extends StatelessWidget{
                 ),
                 Padding(
                   padding: const EdgeInsets.only(left: 20.0, top: 10.0, right: 20.0, bottom: 30.0),
-                    child:
-                      TextField(
+                    child: TextField(
                         controller: passwordController,
                         obscureText: true,
                         enableSuggestions: false,
@@ -46,8 +46,7 @@ class SignInPage extends StatelessWidget{
                 ),
                 Padding(
                     padding: const EdgeInsets.only(top: 10.0, bottom: 30.0),
-                    child:
-                      ConstrainedBox(
+                    child: ConstrainedBox(
                         constraints: BoxConstraints.tightFor(width: 200, height: 60),
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
@@ -58,10 +57,10 @@ class SignInPage extends StatelessWidget{
                               ),
                           ),
                           onPressed: (){
-                            context.read<AuthenticationService>().signIn(
-                              email: emailController.text.trim(),
-                              password: passwordController.text.trim()
-                            );
+                              context.read<AuthenticationService>().signIn(
+                                  email: emailController.text.trim(),
+                                  password: passwordController.text.trim()
+                              );
                           },
                           child: Text("LOG IN"),
                         ),
