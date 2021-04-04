@@ -3,6 +3,7 @@ import 'package:scoopr/authenticationService.dart';
 import 'package:provider/provider.dart';
 import 'package:scoopr/registerAs.dart';
 import 'package:scoopr/SignIn.dart';
+import 'package:scoopr/home.dart';
 
 class SignUpPage extends StatelessWidget{
   final TextEditingController nameController = TextEditingController();
@@ -86,19 +87,45 @@ class SignUpPage extends StatelessWidget{
                                   ),
                                 ),
                                 onPressed: () {
-                                    context.read<AuthenticationService>().signUp(
-                                        email: emailController.text.trim(),
-                                        password: passwordController.text.trim(),
-                                        name: nameController.text.trim()
-                                    );
-                                  Navigator.pop(
-                                    context,
-                                    MaterialPageRoute(builder: (context) => SignUpPage()),
+                                  final status = context.read<AuthenticationService>().signUp(
+                                      email: emailController.text.trim(),
+                                      password: passwordController.text.trim(),
+                                      name: nameController.text.trim()
                                   );
-                                  Navigator.pop(
-                                    context,
-                                    MaterialPageRoute(builder: (context) => RegisterAsPage()),
-                                  );
+                                  status.then((stat) {
+                                    print("WELCOME TO THE FUTURE!!!!");
+                                    print(stat);
+                                    if (stat == "SUCCESS") {
+                                      // Navigate to success screen
+                                      print("CUSTOMER SIGN UP SUCCESS");
+                                      Navigator.pop(
+                                        context,
+                                        MaterialPageRoute(builder: (context) => SignUpPage()),
+                                      );
+                                      Navigator.pop(
+                                        context,
+                                        MaterialPageRoute(builder: (context) => RegisterAsPage()),
+                                      );
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(builder: (context) => HomePage()),
+                                      );
+                                    } else {
+                                      print('CUSTOMER SIGN UP FAILURE');
+                                      showDialog(
+                                          context: context,
+                                          builder: (context) {
+                                            return AlertDialog(
+                                              title: Text(
+                                                'scOOPS! Your sign up failed.',
+                                                style: TextStyle(color: Colors.black),
+                                              ),
+                                              content: Text(stat),
+                                            );
+                                          }
+                                      );
+                                    }
+                                  });
                                 },
                                 child: Text("SIGN UP")
                             )

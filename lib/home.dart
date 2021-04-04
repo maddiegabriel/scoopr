@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:scoopr/authenticationService.dart';
 import 'package:provider/provider.dart';
+import 'package:scoopr/signIn.dart';
 
 class HomePage extends StatelessWidget{
   // Think this needs to do in an async func because it does not load name dynamically
@@ -19,7 +20,7 @@ class HomePage extends StatelessWidget{
   Widget build(BuildContext context){
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.indigoAccent,
+        backgroundColor: Colors.white,
       ),
       body: Center(
         child: Column(
@@ -31,6 +32,10 @@ class HomePage extends StatelessWidget{
                   ),
                   onPressed: (){
                     context.read<AuthenticationService>().signOut();
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => SignInPage()),
+                    );
                   }, child: Text("Sign Out")
               )
             ]

@@ -14,7 +14,7 @@ class AuthenticationService {
   Future<String> signIn({String email, String password}) async {
     try {
       await _firebaseAuth.signInWithEmailAndPassword(email: email, password: password);
-      return "Signed in";
+      return "SUCCESS";
     } on FirebaseAuthException catch (e) {
       return e.message;
     }
@@ -26,7 +26,7 @@ class AuthenticationService {
       User updateUser = FirebaseAuth.instance.currentUser;
       updateUser.updateProfile(displayName: name);
       userSetup(name);
-      return "Signed up";
+      return "SUCCESS";
     } on FirebaseAuthException catch (e) {
       return e.message;
     }
@@ -46,7 +46,7 @@ class AuthenticationService {
       User updateUser = FirebaseAuth.instance.currentUser;
       updateUser.updateProfile(displayName: name);
       vendorUserSetup(name, business, license);
-      return "Signed up";
+      return "SUCCESS";
     } on FirebaseAuthException catch (e) {
       return e.message;
     }

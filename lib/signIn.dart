@@ -3,6 +3,7 @@ import 'package:scoopr/authenticationService.dart';
 import 'package:provider/provider.dart';
 import 'package:scoopr/registerAs.dart';
 import 'package:scoopr/authExceptionHandler.dart';
+import 'package:scoopr/home.dart';
 
 class SignInPage extends StatelessWidget{
   final TextEditingController emailController = TextEditingController();
@@ -57,10 +58,36 @@ class SignInPage extends StatelessWidget{
                               ),
                           ),
                           onPressed: (){
-                              context.read<AuthenticationService>().signIn(
+                              final status = context.read<AuthenticationService>().signIn(
                                   email: emailController.text.trim(),
                                   password: passwordController.text.trim()
                               );
+                              status.then((stat) {
+                                print("WELCOME TO THE FUTURE!!!!");
+                                print(stat);
+                                if (stat == "SUCCESS") {
+                                  // Navigate to success screen
+                                  print("LOGIN SUCCESS");
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(builder: (context) => HomePage()),
+                                  );
+                                } else {
+                                  print('LOGIN FAILURE');
+                                  showDialog(
+                                      context: context,
+                                      builder: (context) {
+                                        return AlertDialog(
+                                          title: Text(
+                                            'scOOPS! Your login failed.',
+                                            style: TextStyle(color: Colors.black),
+                                          ),
+                                          content: Text(stat),
+                                        );
+                                      }
+                                  );
+                                }
+                              });
                           },
                           child: Text("LOG IN"),
                         ),
