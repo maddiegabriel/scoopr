@@ -3,6 +3,7 @@ import 'package:scoopr/authenticationService.dart';
 import 'package:provider/provider.dart';
 import 'package:scoopr/registerAs.dart';
 import 'package:scoopr/SignIn.dart';
+import 'package:scoopr/signUp.dart';
 import 'package:scoopr/vendorHome.dart';
 
 class VendorSignUpPage extends StatelessWidget{
@@ -12,6 +13,23 @@ class VendorSignUpPage extends StatelessWidget{
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController confirmPasswordController = TextEditingController();
+
+  changeRoute(context) async {
+    await Future.delayed(Duration(seconds: 1), () {
+      // Navigator.pop(
+      //   context,
+      //   MaterialPageRoute(builder: (context) => VendorSignUpPage()),
+      // );
+      // Navigator.pop(
+      //   context,
+      //   MaterialPageRoute(builder: (context) => RegisterAsPage()),
+      // );
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => VendorHomePage()),
+      );
+    });
+  }
 
   @override
   Widget build(BuildContext context){
@@ -138,24 +156,7 @@ class VendorSignUpPage extends StatelessWidget{
                                       if (stat.contains("SUCCESS")) {
                                         // Navigate to success screen
                                         print("CUSTOMER SIGN UP SUCCESS");
-                                        Navigator.pop(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  VendorSignUpPage()),
-                                        );
-                                        Navigator.pop(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  RegisterAsPage()),
-                                        );
-                                        Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  VendorHomePage()),
-                                        );
+                                        changeRoute(context);
                                       } else {
                                         print('CUSTOMER SIGN UP FAILURE');
                                         showDialog(

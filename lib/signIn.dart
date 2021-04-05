@@ -10,6 +10,38 @@ class SignInPage extends StatelessWidget{
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
 
+  changeRoute(context, type) async {
+    await Future.delayed(Duration(seconds: 1), () {
+
+      // Navigator.pop(
+      //   context,
+      //   MaterialPageRoute(builder: (context) => SignUpPage()),
+      // );
+      // Navigator.pop(
+      //   context,
+      //   MaterialPageRoute(builder: (context) => RegisterAsPage()),
+      // );
+      print('in changer');
+      print(type);
+      Navigator.pop(
+        context,
+        MaterialPageRoute(builder: (context) => SignInPage()),
+      );
+      if(type == "VENDOR") {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => VendorHomePage()),
+        );
+      } else {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => HomePage()),
+        );
+      }
+
+    });
+  }
+
   @override
   Widget build(BuildContext context){
     return Scaffold(
@@ -66,19 +98,12 @@ class SignInPage extends StatelessWidget{
                               status.then((stat) {
                                 if(stat != null) {
                                   if (stat.contains("SUCCESS")) {
-                                    // Navigate to success screen
-                                    print("LOGIN SUCCESS");
-                                    // if(stat.contains("VENDOR")) {
-                                      Navigator.pop(
-                                        context,
-                                        MaterialPageRoute(builder: (context) => SignInPage()),
-                                      );
-                                    // } else {
-                                    //   Navigator.push(
-                                    //     context,
-                                    //     MaterialPageRoute(builder: (context) => HomePage()),
-                                    //   );
-                                    // }
+                                      print("LOGIN SUCCESS");
+                                      if(stat.contains("CUSTOMER")) {
+                                        changeRoute(context, "CUSTOMER");
+                                      } else {
+                                        changeRoute(context, "VENDOR");
+                                      }
                                   } else {
                                     print('LOGIN FAILURE');
                                     showDialog(

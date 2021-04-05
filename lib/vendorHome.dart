@@ -11,7 +11,7 @@ class VendorHomePage extends StatelessWidget{
   getDisplayName() {
     User currUser = FirebaseAuth.instance.currentUser;
     print('inside getDisplayName');
-    if(currUser.displayName != null) {
+    if(currUser != null) {
       return "VENDOR HOME Welcome " + currUser.displayName;
     } else {
       return "VENDOR HOME Welcome!!";
@@ -20,6 +20,7 @@ class VendorHomePage extends StatelessWidget{
 
   @override
   Widget build(BuildContext context){
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('VENDOR HOME'),

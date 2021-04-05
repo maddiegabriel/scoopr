@@ -52,20 +52,22 @@ class AuthenticationWrapper extends StatelessWidget {
     print(firebaseUser);
 
     if(firebaseUser != null) {
-      CollectionReference users = FirebaseFirestore.instance.collection('Users');
-      String uid = FirebaseAuth.instance.currentUser.uid.toString();
-
-      users.doc(uid).get().then((user) {
-        if(user.data() != null) {
-          print('@ home, document user is...');
-          print(user.data()['type']);
-          if (user.data()['type'] == "VENDOR") {
-            return HomePage();
-          } else {
-            return HomePage();
-          }
-        }
-      });
+      // String uid = FirebaseAuth.instance.currentUser.uid.toString();
+      // return new StreamBuilder(
+      //     stream: FirebaseFirestore.instance.collection('Users').doc(uid).snapshots(),
+      //     builder: (context, snapshot) {
+      //       if (!snapshot.hasData) {
+      //         return new Text("Loading");
+      //       }
+            // var userDocument = snapshot.data;
+            // print('@ streambuilder, user is...' + userDocument['type']);
+            // if(userDocument['type'] == "CUSTOMER") {
+              return HomePage();
+            // } else {
+            //   return VendorHomePage();
+            // }
+      //     }
+      // );
     }
     return SignInPage();
   }
