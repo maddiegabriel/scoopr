@@ -23,10 +23,11 @@ class HomePage extends StatelessWidget {
   // first time after signing up
   getDisplayName() {
     User currUser = FirebaseAuth.instance.currentUser;
+    print('inside getDisplayName');
     if(currUser.displayName != null) {
-      return "Welcome " + currUser.displayName;
+      return "CUSTOMER HOME Welcome " + currUser.displayName;
     } else {
-      return "Welcome";
+      return "CUSTOMER HOME Welcome!!!";
     }
   }
 }
