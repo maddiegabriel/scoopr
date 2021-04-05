@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "19638138825",
+    "project_id": "scoopr-9ccc3",
+    "storage_bucket": "scoopr-9ccc3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:19638138825:android:c8484e61a698a369eb5a18",
+        "android_client_info": {
+          "package_name": "com.groupscoop.scoopr"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "19638138825-5ogcuo711ea6arm2eukn9fi8bgamvd8a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCILNFb1ccVbAo2222O0r8DDydZvLpluwA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "19638138825-5ogcuo711ea6arm2eukn9fi8bgamvd8a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

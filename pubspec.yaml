@@ -1,5 +1,5 @@
 name: scoopr
-description: A mobile application that allows users to find nearby ice cream trucks.
+description: A new Flutter application.
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `pub publish`. This is preferred for private packages.
@@ -24,13 +24,24 @@ dependencies:
   flutter:
     sdk: flutter
 
+  google_maps_flutter: ^2.0.2
+  location: ^3.0.0
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^1.0.0
+  cupertino_icons: ^1.0.1
+
+  # firebase
+  firebase_core: "^0.7.0"
+  firebase_auth: "^0.20.1"
+  cloud_firestore: "^0.16.0"
+  provider: "^4.3.2+1"
+
 
 dev_dependencies:
   flutter_test:
+    sdk: flutter
+  integration_test:
     sdk: flutter
 
 # For information on the generic Dart part of this file, see the
@@ -38,16 +49,10 @@ dev_dependencies:
 
 # The following section is specific to Flutter.
 flutter:
-
-  # The following line ensures that the Material Icons font is
-  # included with your application, so that you can use the icons in
-  # the material Icons class.
   uses-material-design: true
-
-  # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
-  #   - images/a_dot_ham.jpeg
+  assets:
+  - assets/images/logo.png
+  - assets/images/ice-cream-truck.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
