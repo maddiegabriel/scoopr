@@ -11,18 +11,7 @@ class SignInPage extends StatelessWidget{
   final TextEditingController passwordController = TextEditingController();
 
   changeRoute(context, type) async {
-    await Future.delayed(Duration(seconds: 1), () {
-
-      // Navigator.pop(
-      //   context,
-      //   MaterialPageRoute(builder: (context) => SignUpPage()),
-      // );
-      // Navigator.pop(
-      //   context,
-      //   MaterialPageRoute(builder: (context) => RegisterAsPage()),
-      // );
-      print('in changer');
-      print(type);
+    await Future.delayed(Duration(seconds: 2), () {
       Navigator.pop(
         context,
         MaterialPageRoute(builder: (context) => SignInPage()),
@@ -38,7 +27,6 @@ class SignInPage extends StatelessWidget{
           MaterialPageRoute(builder: (context) => HomePage()),
         );
       }
-
     });
   }
 
