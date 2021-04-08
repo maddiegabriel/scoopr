@@ -86,22 +86,4 @@ class AuthenticationWrapper extends StatelessWidget {
     }
     return SignInPage();
   }
-
-
-/*    return FutureBuilder<String>(
-      future: getType(),
-        builder: (context, AsyncSnapshot<String> snapshot) {
-          if (snapshot.hasData) {
-            if(snapshot.data == 'VENDOR' && firebaseUser != null){
-              return VendorHomePage();
-            } else if (snapshot.data == 'CUSTOMER' && firebaseUser != null){
-              return HomePage();
-            } else {
-              return SignInPage();
-            }
-          } else {
-            return CircularProgressIndicator();
-          }
-        });
-  }*/
 }
