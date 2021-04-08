@@ -49,7 +49,6 @@ class _VendorMapTabState extends State<VendorMapTab>{
             _controller.complete(controller);
             mapController = controller;
             getCurrentPosition();
-
           },
         ),
         Container(

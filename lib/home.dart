@@ -1,46 +1,57 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:scoopr/authenticationService.dart';
-import 'package:provider/provider.dart';
-import 'package:scoopr/signIn.dart';
+import 'package:scoopr/tabs/Map.dart';
+import 'package:scoopr/tabs/Profile.dart';
 
-class HomePage extends StatelessWidget {
-  getDisplayName() {
-    User currUser = FirebaseAuth.instance.currentUser;
-    print('inside getDisplayName');
-    if (currUser != null) {
-      return "CUSTOMER HOME Welcome " + currUser.displayName;
-    } else {
-      return "CUSTOMER HOME Welcome!!";
-    }
+class HomePage extends StatefulWidget {
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> with TickerProviderStateMixin{
+  TabController tabController;
+  int selectedIndex = 0;
+  void onItemClicked(int index){
+    setState((){
+      selectedIndex = index;
+      tabController.index = selectedIndex;
+    });
+  }
+
+  @override
+  void initState(){
+    super.initState();
+    // CAN ADD PROFILE TAB HERE
+    tabController = TabController(length: 2, vsync: this);
+  }
+
+  @override
+  void dispose(){
+    tabController.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text('CUSTOMER HOME'),
-          backgroundColor: Colors.white,
-        ),
-        body: Center(
-            child: Column(
-                children: [
-                  Text(getDisplayName()),
-                  ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        primary: Colors.indigoAccent,
-                      ),
-                      onPressed: () {
-                        context.read<AuthenticationService>().signOut();
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => SignInPage()),
-                        );
-                      }, child: Text("Sign Out")
-                  )
-                ]
-            )
-        )
+      body: TabBarView(
+          physics: NeverScrollableScrollPhysics(),
+          controller: tabController,
+          children: <Widget>[
+            MapTab(),
+            ProfileTab()
+          ]
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+          items: <BottomNavigationBarItem>[
+            BottomNavigationBarItem(label: 'Map', icon: Icon(Icons.home)),
+            BottomNavigationBarItem(label: 'Profile', icon: Icon(Icons.person))
+          ],
+          currentIndex: selectedIndex,
+          unselectedItemColor: Colors.grey,
+          selectedItemColor: Colors.indigoAccent,
+          type: BottomNavigationBarType.fixed,
+          onTap: onItemClicked
+      ),
     );
   }
 }
