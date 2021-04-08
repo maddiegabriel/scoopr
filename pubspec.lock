@@ -162,6 +162,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.2.1+3"
+  firebase_database:
+    dependency: "direct main"
+    description:
+      name: firebase_database
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "6.0.0"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -172,6 +179,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_geofire:
+    dependency: "direct main"
+    description:
+      name: flutter_geofire
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.0"
   flutter_plugin_android_lifecycle:
     dependency: transitive
     description:
@@ -429,5 +443,5 @@ packages:
     source: hosted
     version: "2.1.2"
 sdks:
-  dart: ">=2.12.0-259.9.beta <3.0.0"
+  dart: ">=2.12.0 <3.0.0"
   flutter: ">=1.22.0"

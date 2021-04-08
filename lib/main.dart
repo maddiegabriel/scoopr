@@ -7,10 +7,21 @@ import 'package:scoopr/authenticationService.dart';
 import 'package:scoopr/home.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:scoopr/vendorHome.dart';
+import 'package:firebase_database/firebase_database.dart';
+import 'dart:io';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  final FirebaseApp app = await Firebase.initializeApp(
+    name: 'db2',
+    options: const FirebaseOptions(
+      appId: '1:19638138825:android:c8484e61a698a369eb5a18',
+      apiKey: 'AIzaSyCILNFb1ccVbAo2222O0r8DDydZvLpluwA',
+      messagingSenderId: '19638138825',
+      projectId: 'scoopr-9ccc3',
+      databaseURL: 'https://scoopr-9ccc3-default-rtdb.firebaseio.com',
+    ),
+  );
   runApp(MyApp());
 }
 
