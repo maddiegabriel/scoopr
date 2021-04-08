@@ -7,6 +7,7 @@ import 'package:provider/provider.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
 import 'package:flutter/services.dart';
+import 'package:scoopr/signIn.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -140,6 +141,10 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               onPressed: (){
                 context.read<AuthenticationService>().signOut();
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => SignInPage()),
+                );
               }, child: Text("Sign Out")
           )
         ]

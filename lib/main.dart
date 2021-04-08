@@ -39,6 +39,22 @@ class MyApp extends StatelessWidget {
   }
 }
 
+Future<String> getType() async {
+  // get users collection from firebase
+  CollectionReference users = FirebaseFirestore.instance.collection('Users');
+
+  // get uid of currently authenticated user
+  String uid = FirebaseAuth.instance.currentUser.uid.toString();
+
+  // get the document in 'Users' whose id matches the uid we just got
+  DocumentSnapshot user = await FirebaseFirestore.instance.collection('Users').doc(uid).get();
+
+  // get any field from the document
+  String type = user.get('type');
+
+  return type;
+}
+
 class AuthenticationWrapper extends StatelessWidget {
   const AuthenticationWrapper({
     Key key,
@@ -52,8 +68,40 @@ class AuthenticationWrapper extends StatelessWidget {
     print(firebaseUser);
 
     if(firebaseUser != null) {
-      return HomePage();
+      return FutureBuilder<String>(
+          future: getType(),
+          builder: (context, AsyncSnapshot<String> snapshot) {
+            if (snapshot.hasData) {
+              if(snapshot.data == 'VENDOR'){
+                return VendorHomePage();
+              } else if (snapshot.data == 'CUSTOMER'){
+                return HomePage();
+              } else {
+                return SignInPage();
+              }
+            } else {
+              return CircularProgressIndicator();
+            }
+          });
     }
     return SignInPage();
   }
+
+
+/*    return FutureBuilder<String>(
+      future: getType(),
+        builder: (context, AsyncSnapshot<String> snapshot) {
+          if (snapshot.hasData) {
+            if(snapshot.data == 'VENDOR' && firebaseUser != null){
+              return VendorHomePage();
+            } else if (snapshot.data == 'CUSTOMER' && firebaseUser != null){
+              return HomePage();
+            } else {
+              return SignInPage();
+            }
+          } else {
+            return CircularProgressIndicator();
+          }
+        });
+  }*/
 }
