@@ -22,7 +22,7 @@ class _MapTabState extends State<MapTab>{
   void createMarker(){
     if(nearbyIcon == null){
       ImageConfiguration imageConfiguration = createLocalImageConfiguration(context, size: Size(1,1));
-      BitmapDescriptor.fromAssetImage(imageConfiguration, 'assets/images/ice-cream-truck.png').then((icon){
+      BitmapDescriptor.fromAssetImage(imageConfiguration, 'assets/images/ice-cream-truck-blue.png').then((icon){
         nearbyIcon = icon;
       });
       
@@ -47,6 +47,7 @@ class _MapTabState extends State<MapTab>{
   );
 
   bool nearbyDriverKeysLoaded = false;
+  bool truckInArea = false;
 
   void startGeofireListener(){
     Geofire.initialize('driversAvailable');
@@ -89,6 +90,9 @@ class _MapTabState extends State<MapTab>{
 
           case Geofire.onGeoQueryReady:
           // All Intial Data is loaded
+            if(FireHelper.nearbyDriverList.length > 0){
+              truckInArea = true;
+            }
             nearbyDriverKeysLoaded = true;
             updateDriversOnMap();
             break;
@@ -143,6 +147,34 @@ class _MapTabState extends State<MapTab>{
               setupPositionLocator();
             },
             markers: _Markers
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 25.0, left: 5),
+            child: ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              primary: Colors.indigoAccent,
+            ),
+            child: Text("Scoop Scan"),
+            onPressed: (){
+              showDialog(
+                  context: context,
+                  builder: (context) {
+                    return AlertDialog(
+                      title: Text(
+                        'SCOOP ALERT',
+                        style: TextStyle(color: Colors.black),
+                      ),
+                      content: Text(truckInArea ? 'Theres a truck in your area!' : 'Theres no trucks in your area, please come back later!'),
+                      actions: <Widget> [ElevatedButton(
+                          child: Text('Close'),
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          }),
+                      ]
+                    );
+                  }
+              );
+            })
           )
         ]
       )
