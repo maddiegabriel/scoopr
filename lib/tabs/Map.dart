@@ -18,16 +18,24 @@ class _MapTabState extends State<MapTab>{
   Completer<GoogleMapController> _controller = Completer();
 
   BitmapDescriptor nearbyIcon;
-  
-  void createMarker(){
-    if(nearbyIcon == null){
-      ImageConfiguration imageConfiguration = createLocalImageConfiguration(context, size: Size(1,1));
-      BitmapDescriptor.fromAssetImage(imageConfiguration, 'assets/images/ice-cream-truck-blue.png').then((icon){
-        nearbyIcon = icon;
-      });
-      
-    }
+  @override
+  void initState() {
+    BitmapDescriptor.fromAssetImage(
+        ImageConfiguration(size: Size(48, 48)), 'assets/images/ice-cream-truck-blue.png')
+        .then((onValue) {
+      nearbyIcon = onValue;
+    });
   }
+  //
+  // void createMarker(){
+  //   if(nearbyIcon == null){
+  //     ImageConfiguration imageConfiguration = createLocalImageConfiguration(context, size: Size(1,1));
+  //     BitmapDescriptor.fromAssetImage(imageConfiguration, 'assets/images/ice-cream-truck-blue.bmp').then((icon){
+  //       nearbyIcon = icon;
+  //     });
+  //
+  //   }
+  // }
 
   Position currentPosition;
   void setupPositionLocator() async{
@@ -129,7 +137,7 @@ class _MapTabState extends State<MapTab>{
 
   @override
   Widget build(BuildContext context) {
-    createMarker();
+    // createMarker();
     return Scaffold(
       body: Stack(
         children: <Widget>[
