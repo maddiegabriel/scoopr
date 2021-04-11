@@ -226,7 +226,7 @@ class _VendorProfileTabState extends State<VendorProfileTab> with TickerProvider
                                             builder: (context) {
                                               return AlertDialog(
                                                 title: Text(
-                                                  'SCOOPTASTIC!',
+                                                  'SCOOPERIFIC!',
                                                   style: TextStyle(color: Colors.black),
                                                 ),
                                                 content: Text('Your profile info was updated.'),
