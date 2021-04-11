@@ -1,4 +1,4 @@
-![logo](https://user-images.githubusercontent.com/26232541/114309576-9b49df80-9ab5-11eb-8c43-c7f058ec79ac.png)
+<img width=500 src="https://user-images.githubusercontent.com/26232541/114309576-9b49df80-9ab5-11eb-8c43-c7f058ec79ac.png">
 
 Welcome to scoopr - where we bring the scoop to your stoop!
 
