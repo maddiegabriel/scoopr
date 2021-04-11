@@ -17,7 +17,6 @@ class AuthenticationService {
       CollectionReference users = FirebaseFirestore.instance.collection('Users');
       String uid = FirebaseAuth.instance.currentUser.uid.toString();
       DocumentSnapshot user = await FirebaseFirestore.instance.collection('Users').doc(uid).get();
-
       String type = user.get('type');
       if(type == "CUSTOMER") {
         return "CUSTOMER SUCCESS";
@@ -68,5 +67,41 @@ class AuthenticationService {
     String uid = auth.currentUser.uid.toString();
     users.doc(uid).set({'displayName': displayName, 'uid': uid, 'businessName': businessName, 'license': license, 'type': 'VENDOR'});
     return;
+  }
+
+  Future<String> editProfileCustomer(String displayName, String email) async {
+    // update them in firestore
+    try {
+      CollectionReference users = FirebaseFirestore.instance.collection('Users');
+      FirebaseAuth auth = FirebaseAuth.instance;
+      String uid = auth.currentUser.uid.toString();
+      users.doc(uid).set({'displayName': displayName, 'email': email});
+
+      // update them in auth DB
+      var updateUser = FirebaseAuth.instance.currentUser;
+      updateUser.updateProfile(displayName: displayName);
+      updateUser.updateEmail(email);
+      return "SUCCESS";
+    } on FirebaseAuthException catch (e) {
+      return "FAILURE";
+    }
+  }
+
+  Future<String> editProfileVendor(String displayName, String email, String bName, String license) async {
+    // update them in firestore
+    try {
+      CollectionReference users = FirebaseFirestore.instance.collection('Users');
+      FirebaseAuth auth = FirebaseAuth.instance;
+      String uid = auth.currentUser.uid.toString();
+      users.doc(uid).set({'displayName': displayName, 'email': email, 'businessName': bName, 'license': license});
+
+      // update them in auth DB
+      var updateUser = FirebaseAuth.instance.currentUser;
+      updateUser.updateProfile(displayName: displayName);
+      updateUser.updateEmail(email);
+      return "SUCCESS";
+    } on FirebaseAuthException catch (e) {
+      return "FAILURE";
+    }
   }
 }
