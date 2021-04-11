@@ -1,16 +1,18 @@
-# scoopr
+![logo](https://user-images.githubusercontent.com/26232541/114309576-9b49df80-9ab5-11eb-8c43-c7f058ec79ac.png)
 
-A new Flutter application.
+Welcome to scoopr - where we bring the scoop to your stoop!
+
+Made with love by Maddie G and Jovana K for CIS*4030 (Mobile Development).
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+To test out our project in the Android Studio emulator:
+1. Clone this repo
+2. Open it as a Flutter project in Android Studio
+3. Once the project loads, click the "Get Dependencies pop-up to install dependencies. If the pop-up doesn't appear, you can just run `flutter pub get` in the Android Studio terminal.
+4. Make sure you have an Android emulator running through the ADK Manager
+5. Click the green Run button and the scoopr login screen will open in the emulator!
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Technologies
+We made out app using Flutter/Dart and Firebase!
+We used Firebase Authentication for account creation and user management, Firestore to store some extra user data, and the Firebase Realtime Database to enable location tracking for ice cream trucks.
