@@ -3,7 +3,7 @@
 Welcome to scoopr - where we bring the scoop to your stoop!
 
 ## The Authors
-Made with love by Maddie G and Jovana K for CIS*4030 (Mobile Development).
+Made with love by Maddie G and Jovana K.
 <img width=500 src="https://user-images.githubusercontent.com/26232541/114314595-5d56b680-9ac9-11eb-85fb-ba4da6a10a4d.jpg">
 
 ## Getting Started
