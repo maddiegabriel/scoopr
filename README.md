@@ -1,6 +1,8 @@
 <img width=500 src="https://user-images.githubusercontent.com/26232541/114309576-9b49df80-9ab5-11eb-8c43-c7f058ec79ac.png">
 
-Welcome to scoopr - where we bring the scoop to your stoop!
+Welcome to scoopr - an Android app to find active ice cream trucks within your area using google maps. 
+
+"We bring the scoop to your stoop!"
 
 ## The Authors
 Made with love by Maddie G and Jovana K.
